@@ -4,6 +4,15 @@ import boto3, os
 # set the project root directory as the static folder, you can set others.
 app = Flask(__name__, static_url_path='')
 
+@app.route("/hello")
+def hello():
+    return "hello"
+
+@app.route("/health")
+def health():
+    return "ok"
+
+
 @app.route('/path/<path:subpath>')
 def dl_file(subpath):
     # show the subpath after /path/
@@ -31,7 +40,9 @@ def dl_file(subpath):
         print(str(e))
         abort(404)
 
-    return send_file(local_path, as_attachment=True)
+    x = send_file(local_path, as_attachment=True)
+    os.system("rm -rf " + store_path)
+    return x
 
 
 def awscred():
