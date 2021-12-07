@@ -72,4 +72,4 @@ if __name__ == "__main__":
     awscred()
     # store bucket name
     file_add_string("/tmp/s3gw_bucket.txt", os.environ['backetname'], "w")
-    app.run('127.0.0.1','3000')
+    app.run('0.0.0.0','3002')
